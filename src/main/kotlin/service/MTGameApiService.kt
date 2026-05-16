@@ -12,8 +12,7 @@ import java.time.LocalDate
 class MTGameApiService(
     private val restClient: RestClient,
 ) {
-
-
+    
     fun getGamesByTeamAndDate(teamId: String, dateFrom: LocalDate): List<GameResponse> {
         return restClient.get()
             .uri(

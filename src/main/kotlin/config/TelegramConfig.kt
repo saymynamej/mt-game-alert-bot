@@ -11,7 +11,6 @@ class TelegramConfig {
 
     @Bean
     fun telegramClient(@Value($$"${bot.token}") botToken: String): TelegramClient {
-        // Создаем и возвращаем стандартную реализацию клиента на OkHttp
         return OkHttpTelegramClient(botToken)
     }
 }

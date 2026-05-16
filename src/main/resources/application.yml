@@ -1,4 +1,12 @@
 bot:
-  token: "8934984205:AAEhLcusj-bLI96y9w5ip-XscqdPKQGyLvY"
-teams: "13380"
-chats: "-1003796928479"
+  token: ${BOT_TOKEN}
+  teams:
+    Summer Camp:
+      enabled: true
+      teamId: 13380
+#      chatId: -5288458918   # - настоящий чат
+      chatId: -1003796928479 # - тестовый чат
+    Summer Camp 2:
+      enabled: false
+      teamId: 18820
+      chatId: -1002683003320
