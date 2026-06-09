@@ -18,7 +18,7 @@ class MTGameNotificationScheduler(
     private val gameAlertBotProperties: GameAlertBotProperties
 ) {
 
-    val file = File("notified_games.txt")
+    private val storageFile = File(if (File("/data").exists()) "/data/notified_games.txt" else "notified_games.txt")
 
     @PostConstruct
     fun init() {
@@ -37,7 +37,7 @@ class MTGameNotificationScheduler(
                 val teamName = teamInfo.key
                 if (games.isNotEmpty()) {
                     games.forEach { game ->
-                        val alreadyNotified = file.useLines { lines -> lines.none { it.toLong() == game.id } }
+                        val alreadyNotified = storageFile.useLines { lines -> lines.none { it.toLong() == game.id } }
                         if (alreadyNotified) {
                             LOGGER.info("Нашли игры для команды: $teamName. Игры:$games")
                             game.datetime?.atZoneSameInstant(ZoneId.of("Europe/Moscow"))?.toLocalDateTime()?.let {
@@ -61,7 +61,7 @@ class MTGameNotificationScheduler(
     @Synchronized
     private fun saveGameToFile(gameId: Long) {
         try {
-            file.appendText("$gameId\n")
+            storageFile.appendText("$gameId\n")
         } catch (e: Exception) {
             System.err.println("Ошибка при записи в файл: ${e.message}")
         }
