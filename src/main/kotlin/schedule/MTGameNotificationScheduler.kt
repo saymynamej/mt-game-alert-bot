@@ -49,7 +49,7 @@ class MTGameNotificationScheduler(
                                 saveGameToFile(game.id)
                             }
                         } else {
-                            LOGGER.info("Уже провели нотификацию для игры и команды: $teamName. Игры:$games")
+                            LOGGER.info("Уже провели нотификацию игры и для команды: $teamName. Игры:$games")
                         }
                     }
                 } else {

@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling
 @SpringBootApplication
 @EnableScheduling
 @ConfigurationPropertiesScan
-open class Main
+class Main
 
 fun main(args: Array<String>) {
     SpringApplication.run(Main::class.java, *args)
