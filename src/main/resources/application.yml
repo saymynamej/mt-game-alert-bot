@@ -4,7 +4,7 @@ bot:
     Summer Camp:
       enabled: true
       teamId: 13380
-      chatId: -5288458918   # - настоящий чат
+      chatId: -5288458918
     Summer Camp 2:
       enabled: true
       teamId: 18820
