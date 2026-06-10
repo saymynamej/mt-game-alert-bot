@@ -19,13 +19,17 @@ class MTGameNotificationScheduler(
 ) {
 
     private val storageFile = File(if (File("/data").exists()) "/data/notified_games.txt" else "notified_games.txt")
-
+        .apply {
+            if (!exists()) {
+                createNewFile()
+            }
+        }
     @PostConstruct
     fun init() {
         notifyGames()
     }
 
-    @Scheduled(cron = "0 0 * * * *")
+    @Scheduled(cron = "*/1 * * * * *")
     fun notifyGames() {
         gameAlertBotProperties.teams
             .filter { it.value.enabled }
