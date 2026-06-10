@@ -29,7 +29,7 @@ class MTGameNotificationScheduler(
         notifyGames()
     }
 
-    @Scheduled(cron = "*/1 * * * * *")
+    @Scheduled(cron = "0 */5 * * * *")
     fun notifyGames() {
         gameAlertBotProperties.teams
             .filter { it.value.enabled }
