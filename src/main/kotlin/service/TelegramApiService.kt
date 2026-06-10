@@ -14,12 +14,12 @@ class TelegramApiService(
 
     fun createGamePoll(
         chatId: String,
-        opponent: String,
+        teams: String,
         date: LocalDateTime
     ) {
         val poll = SendPoll.builder()
             .chatId(chatId)
-            .question("Игра против команды: $opponent. Дата: ${date.truncatedTo(ChronoUnit.MINUTES)}")
+            .question("Игра. $teams. Дата: ${date.truncatedTo(ChronoUnit.MINUTES)}")
             .options(
                 listOf(
                     InputPollOption(yesOptions.random()),

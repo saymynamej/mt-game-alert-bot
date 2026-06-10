@@ -41,13 +41,17 @@ class MTGameNotificationScheduler(
                 val teamName = teamInfo.key
                 if (games.isNotEmpty()) {
                     games.forEach { game ->
+                        val homeTeam = game.tournamentTeam?.name ?: "Unknown"
+                        val awayTeam = game.competitorTeam?.name ?: "Unknown"
+                        val matchTitle = "$homeTeam vs $awayTeam"
+
                         val alreadyNotified = storageFile.useLines { lines -> lines.none { it.toLong() == game.id } }
                         if (alreadyNotified) {
                             LOGGER.info("Нашли игры для команды: $teamName. Игры:$games")
                             game.datetime?.atZoneSameInstant(ZoneId.of("Europe/Moscow"))?.toLocalDateTime()?.let {
                                 telegramApiService.createGamePoll(
                                     teamInfo.value.chatId,
-                                    game.tournamentTeam?.name ?: "Unknown",
+                                    matchTitle,
                                     it
                                 )
                                 saveGameToFile(game.id)
