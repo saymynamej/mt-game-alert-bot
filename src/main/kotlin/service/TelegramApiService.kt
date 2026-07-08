@@ -12,7 +12,7 @@ interface TelegramService {
     fun createGamePollAndPin(
         chatId: String,
         teams: String,
-        date: LocalDateTime
+        date: String
     )
 }
 
@@ -24,7 +24,7 @@ class TelegramApiServiceImpl(
     override fun createGamePollAndPin(
         chatId: String,
         teams: String,
-        date: LocalDateTime
+        date: String
     ) {
         buildPoll(chatId, teams, date)
             .let { poll -> telegramClient.execute(poll).messageId }
@@ -43,10 +43,10 @@ class TelegramApiServiceImpl(
     private fun buildPoll(
         chatId: String,
         teams: String,
-        date: LocalDateTime
+        textDate: String
     ): SendPoll? = SendPoll.builder()
         .chatId(chatId)
-        .question("Игра. $teams. Дата: ${date.truncatedTo(ChronoUnit.MINUTES)}")
+        .question("Игра. $teams. Дата: $textDate")
         .options(
             listOf(
                 InputPollOption(yesOptions.random()),
