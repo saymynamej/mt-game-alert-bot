@@ -10,7 +10,7 @@ import org.telegram.telegrambots.meta.api.objects.Update
 class MTGameNotificationService(
     @param:Value($$"${bot.token}")
     private val botToken: String,
-    private val telegramApiService: TelegramApiService
+    private val telegramService: TelegramService
 ) : SpringLongPollingBot, LongPollingUpdateConsumer {
     override fun getBotToken() = botToken
 

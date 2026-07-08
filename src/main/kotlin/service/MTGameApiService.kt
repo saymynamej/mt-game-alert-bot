@@ -7,13 +7,17 @@ import org.springframework.web.client.RestClient
 import java.net.URI
 import java.time.LocalDate
 
+interface MTGameService {
+    fun getGamesByTeamAndDate(teamId: String, dateFrom: LocalDate): List<GameResponse>
+}
+
 @Suppress("TYPE_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 @Service
-class MTGameApiService(
+class MTGameServiceImpl(
     private val restClient: RestClient,
-) {
+) : MTGameService {
     
-    fun getGamesByTeamAndDate(teamId: String, dateFrom: LocalDate): List<GameResponse> {
+    override fun getGamesByTeamAndDate(teamId: String, dateFrom: LocalDate): List<GameResponse> {
         return restClient.get()
             .uri(
                 URI.create(

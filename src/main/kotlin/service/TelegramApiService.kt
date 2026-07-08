@@ -8,12 +8,20 @@ import org.telegram.telegrambots.meta.generics.TelegramClient
 import java.time.LocalDateTime
 import java.time.temporal.ChronoUnit
 
-@Service
-class TelegramApiService(
-    private val telegramClient: TelegramClient
-) {
+interface TelegramService {
+    fun createGamePollAndPin(
+        chatId: String,
+        teams: String,
+        date: LocalDateTime
+    )
+}
 
-    fun createGamePoll(
+@Service
+class TelegramApiServiceImpl(
+    private val telegramClient: TelegramClient
+) : TelegramService {
+
+    override fun createGamePollAndPin(
         chatId: String,
         teams: String,
         date: LocalDateTime
