@@ -43,7 +43,7 @@ class NotificationServiceImpl(
                                 gameStorage.save(game.id)
                             }
                         } else {
-                            LOGGER.info("Уже провели нотификацию игры и для команды: $teamName. Игры:$games")
+                            LOGGER.info("Уже провели нотификацию игры и для команды: $teamName. Игры:${games.map { it.id }}")
                         }
                     }
                 } else {
