@@ -1,40 +1,61 @@
 package ru.vtb.dtc.service
 
 import org.springframework.stereotype.Service
+import org.telegram.telegrambots.meta.api.methods.pinnedmessages.PinChatMessage
 import org.telegram.telegrambots.meta.api.methods.polls.SendPoll
 import org.telegram.telegrambots.meta.api.objects.polls.input.InputPollOption
 import org.telegram.telegrambots.meta.generics.TelegramClient
 import java.time.LocalDateTime
 import java.time.temporal.ChronoUnit
 
-@Service
-class TelegramApiService(
-    private val telegramClient: TelegramClient
-) {
+interface TelegramService {
+    fun createGamePollAndPin(
+        chatId: String,
+        teams: String,
+        date: LocalDateTime
+    )
+}
 
-    fun createGamePoll(
+@Service
+class TelegramApiServiceImpl(
+    private val telegramClient: TelegramClient
+) : TelegramService {
+
+    override fun createGamePollAndPin(
         chatId: String,
         teams: String,
         date: LocalDateTime
     ) {
-        val poll = SendPoll.builder()
-            .chatId(chatId)
-            .question("Игра. $teams. Дата: ${date.truncatedTo(ChronoUnit.MINUTES)}")
-            .options(
-                listOf(
-                    InputPollOption(yesOptions.random()),
-                    InputPollOption(noOptions.random()),
-                    InputPollOption(maybeOptions.random())
-                )
-            )
-            .isAnonymous(false)
-            .build()
-        try {
-            telegramClient.execute(poll)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+        buildPoll(chatId, teams, date)
+            .let { poll -> telegramClient.execute(poll).messageId }
+            .let { messageId -> buildPin(chatId, messageId) }
+            .let { pinRequest -> telegramClient.execute(pinRequest) }
     }
+
+    private fun buildPin(chatId: String, messageId: Int): PinChatMessage {
+        return PinChatMessage.builder()
+            .chatId(chatId)
+            .messageId(messageId)
+            .disableNotification(false)
+            .build()
+    }
+
+    private fun buildPoll(
+        chatId: String,
+        teams: String,
+        date: LocalDateTime
+    ): SendPoll? = SendPoll.builder()
+        .chatId(chatId)
+        .question("Игра. $teams. Дата: ${date.truncatedTo(ChronoUnit.MINUTES)}")
+        .options(
+            listOf(
+                InputPollOption(yesOptions.random()),
+                InputPollOption(noOptions.random()),
+                InputPollOption(maybeOptions.random())
+            )
+        )
+        .isAnonymous(false)
+        .build()
 
 
     private companion object {

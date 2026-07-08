@@ -2,14 +2,19 @@ package ru.vtb.dtc.config
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 
+interface BotProperties {
+    val token: String
+    val teams: Map<String, TeamInfo>
+}
+
 @ConfigurationProperties(prefix = "bot")
 data class GameAlertBotProperties(
-    val token: String,
-    val teams: Map<String, TeamInfo>,
-)
+    override val token: String = "",
+    override val teams: Map<String, TeamInfo> = emptyMap(),
+) : BotProperties
 
 data class TeamInfo(
-    val teamId: String,
-    val chatId: String,
-    val enabled: Boolean = true
+    var teamId: String = "",
+    var chatId: String = "",
+    var enabled: Boolean = true
 )
