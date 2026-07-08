@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service
 import ru.vtb.dtc.config.BotProperties
 import java.time.LocalDate
 import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 interface NotificationService {
     fun notifyGames()
@@ -34,11 +36,14 @@ class NotificationServiceImpl(
 
                         if (!gameStorage.isExist(game.id)) {
                             LOGGER.info("Нашли игры для команды: $teamName. Игры:$games")
-                            game.datetime?.atZoneSameInstant(ZoneId.of("Europe/Moscow"))?.toLocalDateTime()?.let {
+                            val textDate = game.datetime?.atZoneSameInstant(ZoneId.of("Europe/Moscow"))
+                                ?.toLocalDateTime()
+                                ?.format(FORMATTER)
+                            if (textDate != null) {
                                 telegramService.createGamePollAndPin(
                                     teamInfo.chatId,
                                     matchTitle,
-                                    it
+                                    textDate
                                 )
                                 gameStorage.save(game.id)
                             }
@@ -53,6 +58,7 @@ class NotificationServiceImpl(
     }
 
     private companion object {
+        private val FORMATTER = DateTimeFormatter.ofPattern("EEEE, dd.MM.yyyy HH:mm", Locale.forLanguageTag("ru"))
         private val LOGGER = LoggerFactory.getLogger(NotificationServiceImpl::class.java)
     }
 }
