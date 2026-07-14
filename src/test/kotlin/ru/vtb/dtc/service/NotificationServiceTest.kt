@@ -1,13 +1,13 @@
 package ru.vtb.dtc.service
 
-import org.junit.jupiter.api.Test
-import org.mockito.Mockito
-import org.mockito.ArgumentMatchers
-import ru.vtb.dtc.config.BotProperties
-import ru.vtb.dtc.config.TeamInfo
+import CompetitorTeam
 import GameResponse
 import TournamentTeamData
-import CompetitorTeam
+import org.junit.jupiter.api.Test
+import org.mockito.ArgumentMatchers
+import org.mockito.Mockito
+import ru.vtb.dtc.config.BotProperties
+import ru.vtb.dtc.config.TeamInfo
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 

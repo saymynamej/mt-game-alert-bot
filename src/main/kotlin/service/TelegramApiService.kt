@@ -5,8 +5,6 @@ import org.telegram.telegrambots.meta.api.methods.pinnedmessages.PinChatMessage
 import org.telegram.telegrambots.meta.api.methods.polls.SendPoll
 import org.telegram.telegrambots.meta.api.objects.polls.input.InputPollOption
 import org.telegram.telegrambots.meta.generics.TelegramClient
-import java.time.LocalDateTime
-import java.time.temporal.ChronoUnit
 
 interface TelegramService {
     fun createGamePollAndPin(
