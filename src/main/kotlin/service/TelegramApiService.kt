@@ -55,7 +55,6 @@ class TelegramApiServiceImpl(
         .isAnonymous(false)
         .build()
 
-
     private companion object {
         private val yesOptions = setOf(
             "(+) 🏀 В стартовой пятерке!",
