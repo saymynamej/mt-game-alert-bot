@@ -5,7 +5,6 @@ bot:
       enabled: true
       teamId: 13380
       chatId: -1002683003320
-    Summer Camp 2:
+    10SchoolTraining:
       enabled: true
-      teamId: 18820
-      chatId: -5288458918
+      chatId: -4684565649

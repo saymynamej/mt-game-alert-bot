@@ -1,6 +1,7 @@
-package ru.vtb.dtc.service
+package ru.vtb.dtc.service.storage
 
 import org.springframework.stereotype.Service
+import ru.vtb.dtc.service.GameStorage
 import java.io.File
 
 @Service
@@ -12,16 +13,26 @@ class FileGameStorage : GameStorage {
             }
         }
 
-    override fun isExist(gameId: Long): Boolean {
-        return storageFile.useLines { lines -> lines.any { it.trim() == gameId.toString() } }
+    override fun isExist(id: String): Boolean {
+        return storageFile.useLines { lines ->
+            lines.any { it.trim() == id }
+        }
     }
 
     @Synchronized
-    override fun save(gameId: Long) {
+    override fun save(id: String) {
         try {
-            storageFile.appendText("$gameId\n")
+            storageFile.appendText("$id\n")
         } catch (e: Exception) {
             System.err.println("Ошибка при записи в файл: ${e.message}")
         }
+    }
+
+    override fun isExist(id: Long): Boolean {
+        return this.isExist(id.toString())
+    }
+
+    override fun save(id: Long) {
+        return this.save(id.toString())
     }
 }
