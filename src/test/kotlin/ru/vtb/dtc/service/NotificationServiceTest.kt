@@ -8,6 +8,8 @@ import org.mockito.ArgumentMatchers
 import org.mockito.Mockito
 import ru.vtb.dtc.config.BotProperties
 import ru.vtb.dtc.config.TeamInfo
+import ru.vtb.dtc.service.mtgame.MTGameNotificationService
+import ru.vtb.dtc.service.mtgame.MTGameService
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 
@@ -18,7 +20,7 @@ class NotificationServiceTest {
     private val gameStorage: GameStorage = Mockito.mock(GameStorage::class.java)
     private val gameAlertBotProperties: BotProperties = Mockito.mock(BotProperties::class.java)
 
-    private val notificationService = NotificationServiceImpl(
+    private val notificationService = MTGameNotificationService(
         mtGameService,
         telegramService,
         gameStorage,
@@ -85,7 +87,7 @@ class NotificationServiceTest {
         Mockito.`when`(gameStorage.isExist(1L)).thenReturn(false)
 
         // When
-        notificationService.notifyGames()
+        notificationService.notify()
 
         // Then
         Mockito.verify(telegramService).createGamePollAndPin(eq(chatId), eq("Home Team vs Away Team"), any())
@@ -146,7 +148,7 @@ class NotificationServiceTest {
         Mockito.`when`(gameStorage.isExist(1L)).thenReturn(true)
 
         // When
-        notificationService.notifyGames()
+        notificationService.notify()
 
         // Then
         Mockito.verify(telegramService, Mockito.never()).createGamePollAndPin(any(), any(), any())

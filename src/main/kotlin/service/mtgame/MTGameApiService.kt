@@ -1,4 +1,4 @@
-package ru.vtb.dtc.service
+package ru.vtb.dtc.service.mtgame
 
 import GameResponse
 import org.springframework.core.ParameterizedTypeReference
