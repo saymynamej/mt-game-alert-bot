@@ -121,7 +121,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>ru.vtb.dtc.MainKt</mainClass>
+                    <mainClass>ru.smn.mt.game.bot.MainKt</mainClass>
                 </configuration>
                 <executions>
                     <execution>
