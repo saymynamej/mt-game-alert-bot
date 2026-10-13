@@ -36,19 +36,6 @@
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
-                <configuration>
-                    <args>
-                        <arg>-java-parameters</arg>
-                        <arg>-Xannotation-default-target=param-property</arg>
-                    </args>
-                    <compilerPlugins>
-                        <plugin>spring</plugin>
-                    </compilerPlugins>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.jetbrains.kotlin</groupId>
-                <artifactId>kotlin-maven-plugin</artifactId>
                 <version>${kotlin.version}</version>
                 <extensions>true</extensions>
                 <executions>
@@ -76,6 +63,10 @@
                     </dependency>
                 </dependencies>
                 <configuration>
+                    <args>
+                        <arg>-java-parameters</arg>
+                        <arg>-Xannotation-default-target=param-property</arg>
+                    </args>
                     <compilerPlugins>
                         <plugin>spring</plugin>
                     </compilerPlugins>
