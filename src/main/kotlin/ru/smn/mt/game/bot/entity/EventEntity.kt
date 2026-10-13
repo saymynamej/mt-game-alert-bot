@@ -5,17 +5,19 @@ import org.springframework.data.relational.core.mapping.Column
 import org.springframework.data.relational.core.mapping.Table
 import java.time.LocalDateTime
 
-@Table("notify")
-data class NotifyEntity(
+@Table("events")
+data class EventEntity(
     @Id
     @Column("id")
     val notifyId: Long? = null,
-    @Column(value = "away_team")
-    val awayTeam: String,
-    @Column(value = "home_team")
-    val homeTeam: String,
+    @Column(value = "poll_message")
+    val pollMessage: String,
+    @Column("chat_id")
+    val chatId: Long,
     @Column(value = "notify_date")
     val notifyDate: LocalDateTime,
+    @Column(value = "force_send")
+    var forceSend: Boolean,
 ) : Persistable<Long> {
     override var newEntity: Boolean = true
 

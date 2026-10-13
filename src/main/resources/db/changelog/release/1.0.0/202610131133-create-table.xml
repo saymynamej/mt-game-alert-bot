@@ -4,17 +4,20 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
     https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
     <changeSet id="create-notify-table" author="saymyname">
-        <createTable tableName="notify">
+        <createTable tableName="events">
             <column name="id" type="BIGINT">
                 <constraints primaryKey="true" nullable="true"/>
             </column>
-            <column name="home_team" type="varchar">
-                <constraints nullable="false"/>
+            <column name="chat_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="true"/>
             </column>
-            <column name="away_team" type="varchar">
+            <column name="poll_message" type="varchar">
                 <constraints nullable="false"/>
             </column>
             <column name="notify_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="force_send" type="boolean">
                 <constraints nullable="false"/>
             </column>
         </createTable>

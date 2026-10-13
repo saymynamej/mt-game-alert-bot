@@ -1,4 +1,4 @@
-package ru.smn.mt.game.bot.service
+package ru.smn.mt.game.bot.service.poll
 
 import org.springframework.stereotype.Service
 import org.telegram.telegrambots.meta.api.methods.pinnedmessages.PinChatMessage
@@ -16,10 +16,9 @@ class TelegramPollService(
 
     override fun createPollAndPin(
         chatId: String,
-        teams: String,
-        date: String
+        message: String
     ) {
-        buildPoll(chatId, teams, date)
+        buildPoll(chatId, message)
             .let { poll -> telegramClient.execute(poll).messageId }
             .let { messageId -> buildPin(chatId, messageId) }
             .let { pinRequest -> telegramClient.execute(pinRequest) }
@@ -35,11 +34,10 @@ class TelegramPollService(
 
     private fun buildPoll(
         chatId: String,
-        teams: String,
-        textDate: String
+        message: String
     ): SendPoll? = SendPoll.builder()
         .chatId(chatId)
-        .question("Игра. $teams. Дата: $textDate")
+        .question(message)
         .options(
             listOf(
                 InputPollOption(yesOptions.random()),

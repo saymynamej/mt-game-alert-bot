@@ -3,6 +3,7 @@ bot:
   schema: http
   host: localhost
   port: 8090
+  trainings: {}
   mt-game:
     url: http://localhost:8090/api/v1/league/2/games/?team_id=%s&date_from=%s
     teams: '{"Test":{"enabled":true,"teamId":10000,"chatId":-100000000}}'
