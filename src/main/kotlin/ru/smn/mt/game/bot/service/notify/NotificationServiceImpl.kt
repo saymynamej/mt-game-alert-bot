@@ -1,9 +1,11 @@
-package ru.smn.mt.game.bot.service
+package ru.smn.mt.game.bot.service.notify
 
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import ru.smn.mt.game.bot.config.BotProperties
 import ru.smn.mt.game.bot.dto.NotifyData
+import ru.smn.mt.game.bot.service.PollService
+import ru.smn.mt.game.bot.service.game.GameService
 import ru.smn.mt.game.bot.service.storage.GameStorage
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -14,8 +16,8 @@ import java.util.Locale
 
 @Service
 class NotificationServiceImpl(
-    private val mtGameService: MTGameService,
-    private val telegramService: TelegramService,
+    private val gameService: GameService,
+    private val pollService: PollService,
     private val gameStorage: GameStorage,
     private val gameAlertBotProperties: BotProperties,
 ) : NotificationService {
@@ -23,7 +25,7 @@ class NotificationServiceImpl(
     override fun notifyGames() {
         gameAlertBotProperties.teamsAsMap
             .filter { it.value.enabled }.forEach { (teamName, teamInfo) ->
-                val games = mtGameService.getGamesByTeamAndDate(
+                val games = gameService.getGamesByTeamAndDate(
                     teamInfo.teamId, LocalDate.now()
                 )
                 if (games.isNotEmpty()) {
@@ -38,7 +40,7 @@ class NotificationServiceImpl(
                                 game.datetime?.atZoneSameInstant(ZoneId.of("Europe/Moscow"))?.toLocalDateTime()
                                     ?.format(FORMATTER)
                             if (textDate != null) {
-                                telegramService.createGamePollAndPin(
+                                pollService.createPollAndPin(
                                     teamInfo.chatId, matchTitle, textDate
                                 )
                                 gameStorage.save(
