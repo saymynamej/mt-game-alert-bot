@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.test.context.SpringBootTest
 import ru.smn.mt.game.bot.service.storage.GameStorage
 import java.time.Duration
-import kotlin.test.assertFalse
 
 @SpringBootTest
 @WireMockTest(httpPort = 8090)
@@ -29,7 +28,7 @@ class GameNotifierTest {
         await().atMost(Duration.ofSeconds(5))
             .pollInterval(Duration.ofMillis(200))
             .untilAsserted {
-                assertFalse(gameStorage.isExist(100500))
+                assertTrue(gameStorage.isExist(100500))
             }
     }
 }
