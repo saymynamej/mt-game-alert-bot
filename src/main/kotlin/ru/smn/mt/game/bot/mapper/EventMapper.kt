@@ -11,6 +11,7 @@ fun EventEntity.toDomain(): EventData {
         pollMessage = pollMessage,
         notifyDate = notifyDate,
         chatId = chatId,
+        saveNewEntity = false
     )
 }
 

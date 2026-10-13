@@ -8,5 +8,5 @@ data class EventData(
     val chatId: Long,
     val notifyDate: LocalDateTime,
     val forceSend: Boolean = false,
-    val saveNewEntity: Boolean = false
+    val saveNewEntity: Boolean = true
 )

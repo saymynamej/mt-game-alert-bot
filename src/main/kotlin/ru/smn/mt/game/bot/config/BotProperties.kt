@@ -28,13 +28,21 @@ data class BotProperties(
 ) : IBotProperties {
 
     override val teamsAsMap: Map<String, TeamInfo> by lazy {
-        jacksonObjectMapper().findAndRegisterModules()
-            .readValue<Map<String, TeamInfo>>(mtGame.teams)
+        if (mtGame.teams.isBlank()) {
+            emptyMap()
+        } else {
+            jacksonObjectMapper().findAndRegisterModules()
+                .readValue<Map<String, TeamInfo>>(mtGame.teams)
+        }
     }
 
     override val trainingsAsMap: Map<String, TrainingInfo> by lazy {
-        jacksonObjectMapper().findAndRegisterModules()
-            .readValue<Map<String, TrainingInfo>>(trainings)
+        if (trainings.isBlank()) {
+            emptyMap()
+        } else {
+            jacksonObjectMapper().findAndRegisterModules()
+                .readValue<Map<String, TrainingInfo>>(trainings)
+        }
     }
 
 }
