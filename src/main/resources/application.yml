@@ -1,11 +1,20 @@
 bot:
+  mock: false
   token: ${BOT_TOKEN}
-  teams:
-    Summer Camp:
-      enabled: true
-      teamId: 13380
-      chatId: -1002683003320
-    Summer Camp 2:
-      enabled: true
-      teamId: 18820
-      chatId: -5288458918
+  schema: ${TELEGRAM_SCHEMA}
+  host: ${TELEGRAM_HOST}
+  port: ${TELEGRAM_PORT}
+  mt-game:
+    url: ${MT_GAME_URL}
+    teams: ${MT_GAME_TEAMS}
+spring:
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/changelog.xml
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 5

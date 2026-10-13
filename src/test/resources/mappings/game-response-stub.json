@@ -1,0 +1,202 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/api/v1/league/2/games/",
+    "queryParameters": {
+      "team_id": {
+        "matches": "^[0-9]+$"
+      },
+      "date_from": {
+        "matches": "^[0-9]{4}-[0-9]{2}-[0-9]{2}.*$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": [
+      {
+        "id": 100500,
+        "additional_data": {
+          "custom_key": "custom_value"
+        },
+        "competitor_team": {
+          "id": 10,
+          "city": {
+            "id": 2,
+            "country": "Russia",
+            "name": "Moscow"
+          },
+          "logo": {
+            "id": 5,
+            "created_at": "2026-10-13T11:00:00Z",
+            "engine": "s3",
+            "mime_type": "image/png",
+            "name": "logo.png",
+            "original_name": "original_logo.png",
+            "path": "/media/logos/10.png",
+            "size": 20480
+          },
+          "name": "Spartak",
+          "sport": {
+            "id": 1,
+            "is_hidden": false,
+            "name": "Футбол",
+            "name_en": "Football",
+            "parent_id": null
+          },
+          "unique_code": "SPT-10"
+        },
+        "competitor_team_id": 10,
+        "competitor_team_name": "Spartak",
+        "competitor_team_score": 2,
+        "competitor_tournament_team": {
+          "id": 100,
+          "additional_data": {
+            "color": "#FF0000",
+            "nickname": "Red-Whites"
+          },
+          "field_values": [],
+          "logo": {
+            "id": 5,
+            "created_at": "2026-10-13T11:00:00Z",
+            "engine": "s3",
+            "mime_type": "image/png",
+            "name": "logo.png",
+            "original_name": "original_logo.png",
+            "path": "/media/logos/10.png",
+            "size": 20480
+          },
+          "name": "Spartak Tournament Team"
+        },
+        "competitor_tournament_team_id": 100,
+        "datetime": "2026-10-13T15:30:00+03:00",
+        "division_id": 4,
+        "game_config": {
+          "duration_minutes": 90
+        },
+        "location": "Luzhniki Stadium",
+        "media_count": 5,
+        "media_live_count": 1,
+        "mhl_carousel": null,
+        "playoff_number": "1A",
+        "playoff_round": 1,
+        "playoff_stage": "QUARTERFINAL",
+        "result_type": "REGULAR",
+        "score_by_period": {
+          "period_1": "1-0",
+          "period_2": "1-2"
+        },
+        "status": "FINISHED",
+        "team": {
+          "id": 20,
+          "city": {
+            "id": 3,
+            "country": "Russia",
+            "name": "Kazan"
+          },
+          "logo": {
+            "id": 6,
+            "created_at": "2026-10-13T11:00:00Z",
+            "engine": "s3",
+            "mime_type": "image/png",
+            "name": "logo_rubin.png",
+            "original_name": "rubin.png",
+            "path": "/media/logos/20.png",
+            "size": 15500
+          },
+          "name": "Rubin",
+          "sport": {
+            "id": 1,
+            "is_hidden": false,
+            "name": "Футбол",
+            "name_en": "Football",
+            "parent_id": null
+          },
+          "unique_code": "RBN-20"
+        },
+        "team_id": 20,
+        "team_score": 1,
+        "tournament": {
+          "id": 50,
+          "alias": "rpl-2026",
+          "league_id": 500,
+          "logo": {
+            "id": 7,
+            "created_at": "2026-10-13T11:00:00Z",
+            "engine": "s3",
+            "mime_type": "image/jpeg",
+            "name": "rpl.jpg",
+            "original_name": "rpl_original.jpg",
+            "path": "/media/tournaments/50.jpg",
+            "size": 51200
+          },
+          "name": "Russian Premier League",
+          "preview_image": "/media/tournaments/previews/50.jpg"
+        },
+        "tournament_court": {
+          "id": 8,
+          "address": "Luzhnetskaya nab. 24",
+          "league_id": 500,
+          "name": "Court №1"
+        },
+        "tournament_group": {
+          "id": 30,
+          "name": "Group A",
+          "sort": 1,
+          "tournament_stage_id": 12,
+          "tournament_round_id": 24,
+          "division_id": 4
+        },
+        "tournament_playoff": {
+          "id": 40,
+          "is_official": true,
+          "name": "Main Playoff Tree",
+          "settings": {
+            "type": "SINGLE_ELIMINATION",
+            "rounds": 4,
+            "teams_count": 16,
+            "final_rounds": 1,
+            "min_user_time": 0,
+            "formation_type": "STANDARD",
+            "loser_final_rounds": 0,
+            "third_place_rounds": 1,
+            "min_user_games_count": 5
+          },
+          "sort": 2,
+          "status": "ACTIVE",
+          "tournament_id": 50,
+          "tournament_stage_id": 12,
+          "winner_place": 1
+        },
+        "tournament_playoff_id": 40,
+        "tournament_round_id": 24,
+        "tournament_stage": null,
+        "tournament_stage_id": 12,
+        "tournament_team": {
+          "id": 200,
+          "additional_data": {
+            "color": "#008000",
+            "nickname": "Stones"
+          },
+          "field_values": [],
+          "logo": {
+            "id": 6,
+            "created_at": "2026-10-13T11:00:00Z",
+            "engine": "s3",
+            "mime_type": "image/png",
+            "name": "logo_rubin.png",
+            "original_name": "rubin.png",
+            "path": "/media/logos/20.png",
+            "size": 15500
+          },
+          "name": "Rubin Tournament Team"
+        },
+        "tournament_team_id": 200,
+        "tournament_tour": null
+      }
+    ]
+  }
+}
