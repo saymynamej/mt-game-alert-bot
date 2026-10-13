@@ -3,9 +3,9 @@ package ru.vtb.dtc.service.mtgame
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import ru.vtb.dtc.config.BotProperties
-import ru.vtb.dtc.service.GameStorage
+import ru.vtb.dtc.service.storage.GameStorage
 import ru.vtb.dtc.service.NotificationService
-import ru.vtb.dtc.service.TelegramService
+import ru.vtb.dtc.service.telegram.TelegramService
 import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -22,7 +22,7 @@ class MTGameNotificationService(
 
     override fun notify() {
         gameAlertBotProperties.teams
-            .filter { it.value.enabled }
+            .filter { it.value.enabled && it.value.teamId.isNotBlank()}
             .forEach { (teamName, teamInfo) ->
                 val games = mtGameService.getGamesByTeamAndDate(
                     teamInfo.teamId,

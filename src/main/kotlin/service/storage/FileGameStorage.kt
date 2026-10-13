@@ -1,7 +1,6 @@
 package ru.vtb.dtc.service.storage
 
 import org.springframework.stereotype.Service
-import ru.vtb.dtc.service.GameStorage
 import java.io.File
 
 @Service

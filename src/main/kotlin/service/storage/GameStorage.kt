@@ -1,4 +1,4 @@
-package ru.vtb.dtc.service
+package ru.vtb.dtc.service.storage
 
 interface GameStorage {
     fun isExist(id: String): Boolean

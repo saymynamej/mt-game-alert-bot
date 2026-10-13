@@ -10,6 +10,8 @@ import ru.vtb.dtc.config.BotProperties
 import ru.vtb.dtc.config.TeamInfo
 import ru.vtb.dtc.service.mtgame.MTGameNotificationService
 import ru.vtb.dtc.service.mtgame.MTGameService
+import ru.vtb.dtc.service.storage.GameStorage
+import ru.vtb.dtc.service.telegram.TelegramService
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 

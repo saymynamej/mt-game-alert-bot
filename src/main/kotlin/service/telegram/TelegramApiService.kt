@@ -1,4 +1,4 @@
-package ru.vtb.dtc.service
+package ru.vtb.dtc.service.telegram
 
 import org.springframework.stereotype.Service
 import org.telegram.telegrambots.meta.api.methods.pinnedmessages.PinChatMessage

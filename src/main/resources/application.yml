@@ -5,6 +5,7 @@ bot:
       enabled: true
       teamId: 13380
       chatId: -1002683003320
+  trainings:
     10SchoolTraining:
       enabled: true
       chatId: -4684565649
