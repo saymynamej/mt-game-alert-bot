@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+  postgres:
+    image: postgres:16
+    env_file:
+      - template.env
+    restart: always
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    command: postgres -N 1000
+  wiremock:
+    image: "wiremock/wiremock:3.13.2"
+    container_name: wiremock
+    ports:
+      - "8089:8080"
+    volumes:
+      - ./wiremock/mappings:/home/wiremock/mappings
+      - ./wiremock/__files:/home/wiremock/__files
