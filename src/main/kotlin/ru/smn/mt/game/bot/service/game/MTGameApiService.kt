@@ -1,4 +1,4 @@
-package ru.smn.mt.game.bot.service
+package ru.smn.mt.game.bot.service.game
 
 import org.springframework.core.ParameterizedTypeReference
 import org.springframework.stereotype.Service
@@ -8,16 +8,12 @@ import ru.smn.mt.game.bot.dto.GameResponse
 import java.net.URI
 import java.time.LocalDate
 
-interface MTGameService {
-    fun getGamesByTeamAndDate(teamId: String, dateFrom: LocalDate): List<GameResponse>
-}
-
 @Suppress("TYPE_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 @Service
 class MTGameServiceImpl(
     private val restClient: RestClient,
     private val gameAlertBotProperties: GameAlertBotProperties
-) : MTGameService {
+) : GameService {
 
     override fun getGamesByTeamAndDate(teamId: String, dateFrom: LocalDate): List<GameResponse> {
         return restClient.get()

@@ -3,7 +3,7 @@ package ru.smn.mt.game.bot.schedule
 import jakarta.annotation.PostConstruct
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
-import ru.smn.mt.game.bot.service.NotificationService
+import ru.smn.mt.game.bot.service.notify.NotificationService
 
 @Component
 class MTGameNotificationScheduler(
