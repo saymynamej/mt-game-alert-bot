@@ -13,12 +13,13 @@
         <kotlin.code.style>official</kotlin.code.style>
         <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
         <kotlin.version>2.3.20</kotlin.version>
+        <telegram.client.version>10.3.0</telegram.client.version>
     </properties>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.1.1</version> <!-- Укажите вашу версию Spring Boot -->
+        <version>4.1.1</version>
         <relativePath/>
     </parent>
 
@@ -133,12 +134,12 @@
         <dependency>
             <groupId>org.telegram</groupId>
             <artifactId>telegrambots-springboot-longpolling-starter</artifactId>
-            <version>10.3.0</version>
+            <version>${telegram.client.version}</version>
         </dependency>
         <dependency>
             <groupId>org.telegram</groupId>
             <artifactId>telegrambots-client</artifactId>
-            <version>10.3.0</version>
+            <version>${telegram.client.version}</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
