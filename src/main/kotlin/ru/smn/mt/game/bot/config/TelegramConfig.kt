@@ -16,15 +16,15 @@ class TelegramConfig {
 
     @Bean
     @ConditionalOnProperty("mock", prefix = "bot", havingValue = "false", matchIfMissing = false)
-    fun telegramClient(gameAlertBotProperties: GameAlertBotProperties): TelegramClient {
+    fun telegramClient(botProperties: BotProperties): TelegramClient {
         val okHttpClient = OkHttpClient.Builder().build()
         return OkHttpTelegramClient(
             okHttpClient,
-            gameAlertBotProperties.token,
+            botProperties.token,
             TelegramUrl.builder()
-                .schema(gameAlertBotProperties.schema)
-                .host(gameAlertBotProperties.host)
-                .port(gameAlertBotProperties.port.toInt())
+                .schema(botProperties.schema)
+                .host(botProperties.host)
+                .port(botProperties.port.toInt())
                 .build()
         )
     }

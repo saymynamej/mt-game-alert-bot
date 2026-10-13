@@ -3,7 +3,7 @@ package ru.smn.mt.game.bot.service.game
 import org.springframework.core.ParameterizedTypeReference
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestClient
-import ru.smn.mt.game.bot.config.GameAlertBotProperties
+import ru.smn.mt.game.bot.config.BotProperties
 import ru.smn.mt.game.bot.dto.GameResponse
 import java.net.URI
 import java.time.LocalDate
@@ -12,7 +12,7 @@ import java.time.LocalDate
 @Service
 class MTGameServiceImpl(
     private val restClient: RestClient,
-    private val gameAlertBotProperties: GameAlertBotProperties
+    private val botProperties: BotProperties
 ) : GameService {
 
     override fun getGamesByTeamAndDate(teamId: String, dateFrom: LocalDate): List<GameResponse> {
@@ -28,5 +28,5 @@ class MTGameServiceImpl(
     }
 
     private fun getMTGameInfoUrl(teamId: String, dateFrom: LocalDate) =
-        gameAlertBotProperties.mtGame.url.format(teamId, dateFrom)
+        botProperties.mtGame.url.format(teamId, dateFrom)
 }

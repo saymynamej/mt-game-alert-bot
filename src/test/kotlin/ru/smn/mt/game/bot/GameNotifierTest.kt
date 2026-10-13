@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.test.context.SpringBootTest
-import ru.smn.mt.game.bot.service.storage.GameStorage
+import ru.smn.mt.game.bot.service.storage.EventStorage
 import java.time.Duration
 
 @SpringBootTest
@@ -20,7 +20,7 @@ import java.time.Duration
 class GameNotifierTest {
 
     @Autowired
-    private lateinit var gameStorage: GameStorage
+    private lateinit var eventStorage: EventStorage
 
 
     @Test
@@ -28,7 +28,7 @@ class GameNotifierTest {
         await().atMost(Duration.ofSeconds(5))
             .pollInterval(Duration.ofMillis(200))
             .untilAsserted {
-                assertTrue(gameStorage.isExist(100500))
+                assertTrue(eventStorage.isExist(100500))
             }
     }
 }

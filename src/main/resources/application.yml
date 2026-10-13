@@ -4,6 +4,7 @@ bot:
   schema: ${TELEGRAM_SCHEMA}
   host: ${TELEGRAM_HOST}
   port: ${TELEGRAM_PORT}
+  trainings: ${TRAININGS}
   mt-game:
     url: ${MT_GAME_URL}
     teams: ${MT_GAME_TEAMS}
